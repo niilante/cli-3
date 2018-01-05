@@ -23,6 +23,8 @@ jobs:
             - v1-yarn
       - run: yarn
       - run: yarn link
+        # TODO: get rid of this later
+      - run: mkdir -p ~/.cache/heroku
       - run: yarn test --coverage
       - run: curl -s https://codecov.io/bash | bash
       - save_cache:

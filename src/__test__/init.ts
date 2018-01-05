@@ -21,5 +21,7 @@ beforeEach(async () => {
   process.env.HEROKU_CONFIG_DIR = path.join(root, `test-${count}`, 'config')
 })
 
-export const integrationTest = process.env.CI || process.env.npm_lifecycle_event === 'test' ? test : test.skip
+export const integrationTest = process.env.npm_lifecycle_event === 'test' ? test : test.skip
+export const skipWindowsIntegrationTest =
+  process.env.npm_lifecycle_event === 'test' && process.platform !== 'win32' ? test : test.skip
 export const skipIfWindows = process.platform === 'win32' ? test.skip : test
